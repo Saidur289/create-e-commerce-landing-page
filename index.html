@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChicWove - Wear Your Confidence</title>
+    <!-- Hide animated elements only when JS runs, so the page still shows if scripts fail -->
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#E94B3C',
+                            dark: '#D63E30',
+                            50: '#FDECE8',
+                            100: '#FBDCD5',
+                        },
+                        ink: '#1E1B1A',
+                        textMuted: '#5F5A57',
+                        hero: '#F7EEE4',
+                        page: '#FEF9F5',
+                    },
+                    fontFamily: {
+                        sans: ['Arial', 'Helvetica', 'sans-serif'],
+                        display: ['Arial', 'Helvetica', 'sans-serif'],
+                        logo: ['Arial', 'Helvetica', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FEF9F5; }
+        .hero-bg { background: linear-gradient(180deg, #F8EEE4 0%, #F7EDE2 85%, #FEF9F5 100%); }
+        .cat-1 { background: linear-gradient(135deg, #FFE1C4 0%, #FFF1E2 100%); }
+        .cat-2 { background: linear-gradient(135deg, #FCEBCB 0%, #FFF6E6 100%); }
+        .cat-3 { background: linear-gradient(135deg, #DCE6D6 0%, #EEF3EA 100%); }
+        .cat-4 { background: linear-gradient(135deg, #FFE3E3 0%, #FFF0EE 100%); }
+        .cat-5 { background: linear-gradient(135deg, #EED8E2 0%, #F8ECF1 100%); }
+        .promo-bg { background: linear-gradient(100deg, #EE5A4F 0%, #F06A5C 55%, #EE6A5A 100%); }
+        .stars { color: #F5B82A; }
+        .hero-title { perspective: 700px; }
+        .hero-title .word { display: inline-block; transform-origin: 50% 100%; will-change: transform, filter; }
+
+        /* elements GSAP reveals start hidden (only when JS is on) */
+        .js .pre { opacity: 0; }
+
+        /* Lenis recommended styles */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        .liked svg { fill: currentColor; }
+        .liked { color: #E94B3C; }
+    </style>
+</head>
+<body class="font-sans text-ink antialiased overflow-x-hidden selection:bg-brand selection:text-white">
+
+    <!-- Hero band (header + hero share the warm background) -->
+    <div class="hero-band hero-bg relative overflow-hidden">
+        <!-- soft leaf shadow, top-left -->
+        <svg class="hero-leaf absolute -left-10 top-16 w-[260px] h-[260px] text-[#E9DCCD] opacity-60 blur-[6px] pointer-events-none" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true">
+            <path d="M30 190 C 60 140, 90 100, 150 20 C 120 60, 80 70, 60 40 C 70 80, 70 110, 30 190 Z"/>
+            <path d="M80 150 C 110 130, 150 120, 190 80 C 150 90, 120 80, 110 60 C 110 100, 100 120, 80 150 Z"/>
+        </svg>
+
+        <div class="max-w-[1280px] mx-auto px-6 lg:px-[60px]">
+            <!-- Header -->
+            <header class="site-header flex items-center justify-between pt-7 pb-4 relative z-30">
+                <a href="#" class="pre flex flex-col leading-none">
+                    <span class="flex items-center gap-2">
+                        <svg class="logo-mark w-9 h-9 text-brand" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="20" cy="20" r="3.5"/>
+                            <path d="M20 16.5c-3-4-3-9 0-12 3 3 3 8 0 12zM20 23.5c-3 4-3 9 0 12 3-3 3-8 0-12zM16.5 20c-4-3-9-3-12 0 3 3 8 3 12 0zM23.5 20c4-3 9-3 12 0-3 3-8 3-12 0z"/>
+                            <path d="M17.5 17.5c-1-5-5-8-9-9 1 4 4 8 9 9zM22.5 22.5c1 5 5 8 9 9-1-4-4-8-9-9zM22.5 17.5c5-1 8-5 9-9-4 1-8 4-9 9zM17.5 22.5c-5 1-8 5-9 9 4-1 8-4 9-9z"/>
+                        </svg>
+                        <span class="font-logo font-bold text-[26px] sm:text-[36px] tracking-tight text-ink">Chic<span class="text-brand">Wove</span></span>
+                    </span>
+                    <span class="text-[11px] sm:text-[15px] whitespace-nowrap text-textMuted ml-[44px] mt-1">Wear Your Confidence</span>
+                </a>
+
+                <nav class="pre hidden xl:flex items-center gap-11 font-medium text-[17px]">
+                    <a href="#" class="text-brand relative after:absolute after:left-0 after:right-0 after:-bottom-2 after:h-[2px] after:bg-brand">Home</a>
+                    <a href="#categories" class="hover:text-brand transition-colors">Shop</a>
+                    <a href="#deals" class="hover:text-brand transition-colors">Deals</a>
+                    <a href="#" class="hover:text-brand transition-colors">About Us</a>
+                    <a href="#" class="hover:text-brand transition-colors">Blog</a>
+                    <a href="#perks" class="hover:text-brand transition-colors">Contact</a>
+                </nav>
+
+                <div class="pre flex items-center gap-4 sm:gap-8">
+                    <button data-spring class="hover:text-brand transition-colors" aria-label="Search"><i data-lucide="search" class="w-6 h-6 sm:w-7 sm:h-7" stroke-width="2.2"></i></button>
+                    <button data-spring class="hover:text-brand transition-colors" aria-label="Account"><i data-lucide="user" class="w-6 h-6 sm:w-7 sm:h-7" stroke-width="2"></i></button>
+                    <button data-spring class="cart-btn hover:text-brand transition-colors relative" aria-label="Cart">
+                        <i data-lucide="shopping-bag" class="w-6 h-6 sm:w-7 sm:h-7" stroke-width="2"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-3 bg-brand text-white text-[12px] w-[22px] h-[22px] rounded-full flex items-center justify-center font-semibold">2</span>
+                    </button>
+                    <button id="menu-btn" data-spring class="xl:hidden hover:text-brand transition-colors" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu" class="w-7 h-7"></i></button>
+                </div>
+            </header>
+            <!-- Mobile / tablet menu -->
+            <nav id="mobile-menu" class="xl:hidden hidden absolute left-4 right-4 sm:left-auto sm:right-6 sm:w-[320px] top-[96px] z-50 bg-white rounded-2xl shadow-[0_20px_50px_rgba(60,30,20,0.18)] border border-[#F3E7DE] p-3 flex-col text-[17px] font-medium">
+                <a href="#" class="px-4 py-3 rounded-xl text-brand bg-brand-50">Home</a>
+                <a href="#categories" class="px-4 py-3 rounded-xl hover:bg-brand-50">Shop</a>
+                <a href="#deals" class="px-4 py-3 rounded-xl hover:bg-brand-50">Deals</a>
+                <a href="#" class="px-4 py-3 rounded-xl hover:bg-brand-50">About Us</a>
+                <a href="#" class="px-4 py-3 rounded-xl hover:bg-brand-50">Blog</a>
+                <a href="#perks" class="px-4 py-3 rounded-xl hover:bg-brand-50">Contact</a>
+            </nav>
+
+            <!-- Hero -->
+            <section class="relative flex flex-col lg:flex-row items-center lg:min-h-[640px] xl:min-h-[700px]">
+                <div class="lg:w-[48%] z-10 pt-10 pb-8 lg:pb-28">
+                    <div class="hero-badge pre inline-flex items-center gap-2.5 bg-brand-50 text-ink font-semibold px-4 py-2 rounded-full text-[15px] tracking-wide mb-9">
+                        <i data-lucide="asterisk" class="w-4 h-4 text-brand" stroke-width="3"></i> NEW COLLECTION
+                    </div>
+
+                    <h1 class="hero-title font-display font-bold tracking-tight text-[46px] min-[380px]:text-[54px] sm:text-[76px] lg:text-[64px] xl:text-[84px] leading-[1.06] mb-8 text-ink">
+                        <span class="word pre">Stylish</span> <span class="word pre">Looks.</span><br>
+                        <span class="word pre">Everyday</span> <span class="word pre text-brand">You.</span>
+                    </h1>
+
+                    <p class="hero-copy pre text-[18px] sm:text-[22px] text-textMuted mb-11 max-w-[400px] leading-[1.6]">
+                        Trendy styles, premium quality &amp; unmatched comfort.
+                    </p>
+
+                    <div class="hero-cta flex flex-wrap items-center gap-6">
+                        <a href="#arrivals" data-spring class="pre bg-brand hover:bg-brand-dark text-white h-[62px] px-8 rounded-lg font-semibold text-[18px] transition-colors flex items-center gap-3 shadow-[0_10px_24px_rgba(233,75,60,0.28)]">
+                            Shop Now <i data-lucide="arrow-right" class="w-5 h-5" stroke-width="2.5"></i>
+                        </a>
+                        <a href="#categories" data-spring class="pre border-[1.5px] border-brand/50 text-ink bg-white/40 hover:bg-white h-[62px] px-9 rounded-lg font-semibold text-[18px] transition-colors flex items-center">
+                            Explore Collections
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero image: model already sits on the coral circle -->
+                <div class="hero-img-wrap lg:absolute lg:right-[-30px] xl:right-[-10px] lg:top-[-70px] xl:top-[-90px] w-full lg:w-[500px] xl:w-[640px] h-[440px] sm:h-[560px] lg:h-[700px] xl:h-[790px] pointer-events-none">
+                    <img src="images/Gemini_Generated_Image_l93t0tl93t0tl93t.jpg" alt="Smiling woman in a red overshirt carrying a woven tote"
+                         class="hero-img pre w-full h-full object-cover object-[50%_8%]"
+                         style="-webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%), linear-gradient(to right, transparent 0%, #000 8%, #000 94%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to bottom, #000 82%, transparent 100%), linear-gradient(to right, transparent 0%, #000 8%, #000 94%, transparent 100%); mask-composite: intersect;">
+                </div>
+
+                <!-- Floating review card: outer div positions, inner div animates -->
+                <div class="absolute bottom-6 lg:bottom-[110px] left-[50%] lg:left-[40%] xl:left-[48%] -translate-x-1/2 lg:translate-x-0 z-20">
+                    <div class="review-card pre bg-white/95 pl-3 pr-8 py-3 rounded-full shadow-[0_14px_40px_rgba(60,30,20,0.12)] flex whitespace-nowrap items-center gap-4">
+                        <div class="flex -space-x-3">
+                            <img class="avatar pre w-[54px] h-[54px] rounded-full border-[3px] border-white object-cover object-top" src="images/Gemini_Generated_Image_ff4l1uff4l1uff4l.jpg" alt="">
+                            <img class="avatar pre w-[54px] h-[54px] rounded-full border-[3px] border-white object-cover object-top" src="images/Gemini_Generated_Image_f0apb9f0apb9f0ap.jpg" alt="">
+                            <img class="avatar pre w-[54px] h-[54px] rounded-full border-[3px] border-white object-cover object-top" src="images/Gemini_Generated_Image_clmg55clmg55clmg.jpg" alt="">
+                        </div>
+                        <div>
+                            <p class="text-[18px] font-semibold text-ink leading-tight">Loved by <span class="count" data-to="10">10</span>K+ Women</p>
+                            <div class="flex items-center gap-2 mt-1.5">
+                                <div class="stars flex gap-0.5">
+                                    <i data-lucide="star" class="star pre w-4 h-4" fill="currentColor"></i>
+                                    <i data-lucide="star" class="star pre w-4 h-4" fill="currentColor"></i>
+                                    <i data-lucide="star" class="star pre w-4 h-4" fill="currentColor"></i>
+                                    <i data-lucide="star" class="star pre w-4 h-4" fill="currentColor"></i>
+                                    <i data-lucide="star-half" class="star pre w-4 h-4" fill="currentColor"></i>
+                                </div>
+                                <span class="font-semibold text-ink text-[13px]">4.8</span>
+                                <span class="text-[12px] text-textMuted">(2.5K Reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <main class="max-w-[1280px] mx-auto px-6 lg:px-[60px] pb-16">
+
+        <!-- Features bar (overlaps the hero band) -->
+        <div class="features-bar pre bg-white rounded-[26px] shadow-[0_14px_40px_rgba(80,40,20,0.07)] border border-[#F3E7DE] px-8 py-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-y-6 gap-x-4 relative z-30 mt-6 lg:-mt-[72px] mb-16">
+            <div class="feature flex items-center gap-5 xl:border-r border-[#F0E4DC] pr-6">
+                <div class="feat-icon pre w-[66px] h-[66px] rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0"><i data-lucide="shield-check" class="w-7 h-7"></i></div>
+                <div class="feat-text pre"><h4 class="font-semibold text-[17px] whitespace-nowrap">Premium Quality</h4><p class="text-[15px] text-textMuted mt-1 leading-snug">Handpicked just<br>for you</p></div>
+            </div>
+            <div class="feature flex items-center gap-5 xl:border-r border-[#F0E4DC] xl:px-6">
+                <div class="feat-icon pre w-[66px] h-[66px] rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0"><i data-lucide="truck" class="w-7 h-7"></i></div>
+                <div class="feat-text pre"><h4 class="font-semibold text-[17px] whitespace-nowrap">Fast Delivery</h4><p class="text-[15px] text-textMuted mt-1 leading-snug">On-time delivery<br>guaranteed</p></div>
+            </div>
+            <div class="feature flex items-center gap-5 xl:border-r border-[#F0E4DC] xl:px-6">
+                <div class="feat-icon pre w-[66px] h-[66px] rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0"><i data-lucide="refresh-cw" class="w-7 h-7"></i></div>
+                <div class="feat-text pre"><h4 class="font-semibold text-[17px] whitespace-nowrap">Easy Returns</h4><p class="text-[15px] text-textMuted mt-1 leading-snug">7 days return<br>policy</p></div>
+            </div>
+            <div class="feature flex items-center gap-5 xl:pl-6">
+                <div class="feat-icon pre w-[66px] h-[66px] rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0"><i data-lucide="award" class="w-7 h-7"></i></div>
+                <div class="feat-text pre"><h4 class="font-semibold text-[17px] whitespace-nowrap">Best Prices</h4><p class="text-[15px] text-textMuted mt-1 leading-snug">Stylish looks,<br>best prices</p></div>
+            </div>
+        </div>
+
+        <!-- Shop by Category -->
+        <section id="categories" class="mb-14">
+            <div class="sec-head flex items-center justify-between mb-7">
+                <h2 class="pre text-[22px] sm:text-[27px] font-semibold">Shop by Category</h2>
+                <a href="#" class="pre text-brand font-semibold text-[14px] sm:text-[16px] hover:underline flex items-center gap-2">View All Categories <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6">
+                <a href="#" data-lift class="cat-card pre cat-1 rounded-[22px] h-[202px] flex items-center gap-3 pl-3 pr-4 overflow-hidden shadow-[0_6px_20px_rgba(80,40,20,0.05)]">
+                    <span class="w-[46%] h-[85%] rounded-2xl overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=300&auto=format&fit=crop" alt="Dresses" class="cat-img w-full h-full object-cover mix-blend-multiply"></span>
+                    <div><h3 class="font-semibold text-[17px] leading-tight mb-3">Women<br>Dresses</h3><p class="text-[13px] text-textMuted mb-4">120+ Items</p><i data-lucide="arrow-right" class="cat-arrow w-5 h-5"></i></div>
+                </a>
+                <a href="#" data-lift class="cat-card pre cat-2 rounded-[22px] h-[202px] flex items-center gap-3 pl-3 pr-4 overflow-hidden shadow-[0_6px_20px_rgba(80,40,20,0.05)]">
+                    <span class="w-[46%] h-[85%] rounded-2xl overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=300&auto=format&fit=crop" alt="Tops" class="cat-img w-full h-full object-cover mix-blend-multiply"></span>
+                    <div><h3 class="font-semibold text-[17px] leading-tight mb-3">Tops &amp;<br>T-shirts</h3><p class="text-[13px] text-textMuted mb-4">150+ Items</p><i data-lucide="arrow-right" class="cat-arrow w-5 h-5"></i></div>
+                </a>
+                <a href="#" data-lift class="cat-card pre cat-3 rounded-[22px] h-[202px] flex items-center gap-3 pl-3 pr-4 overflow-hidden shadow-[0_6px_20px_rgba(80,40,20,0.05)]">
+                    <span class="w-[46%] h-[85%] rounded-2xl overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=300&auto=format&fit=crop" alt="Denim" class="cat-img w-full h-full object-cover mix-blend-multiply"></span>
+                    <div><h3 class="font-semibold text-[17px] leading-tight mb-3">Denim<br>Wear</h3><p class="text-[13px] text-textMuted mb-4">80+ Items</p><i data-lucide="arrow-right" class="cat-arrow w-5 h-5"></i></div>
+                </a>
+                <a href="#" data-lift class="cat-card pre cat-4 rounded-[22px] h-[202px] flex items-center gap-3 pl-3 pr-4 overflow-hidden shadow-[0_6px_20px_rgba(80,40,20,0.05)]">
+                    <span class="w-[46%] h-[85%] rounded-2xl overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?q=80&w=300&auto=format&fit=crop" alt="Shoes" class="cat-img w-full h-full object-cover mix-blend-multiply"></span>
+                    <div><h3 class="font-semibold text-[17px] leading-tight mb-3">Shoes &amp;<br>Footwear</h3><p class="text-[13px] text-textMuted mb-4">100+ Items</p><i data-lucide="arrow-right" class="cat-arrow w-5 h-5"></i></div>
+                </a>
+                <a href="#" data-lift class="cat-card pre cat-5 rounded-[22px] h-[202px] flex items-center gap-3 pl-3 pr-4 overflow-hidden shadow-[0_6px_20px_rgba(80,40,20,0.05)]">
+                    <span class="w-[46%] h-[85%] rounded-2xl overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=300&auto=format&fit=crop" alt="Bags" class="cat-img w-full h-full object-cover mix-blend-multiply"></span>
+                    <div><h3 class="font-semibold text-[17px] leading-tight mb-3">Bags &amp;<br>Accessories</h3><p class="text-[13px] text-textMuted mb-4">90+ Items</p><i data-lucide="arrow-right" class="cat-arrow w-5 h-5"></i></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section id="arrivals" class="mb-14">
+            <div class="sec-head flex items-center justify-between mb-7">
+                <h2 class="pre text-[22px] sm:text-[27px] font-semibold">New Arrivals</h2>
+                <a href="#" class="pre text-brand font-semibold text-[14px] sm:text-[16px] hover:underline flex items-center gap-2">View All Products <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            </div>
+
+            <div class="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
+                <!-- Product 1 -->
+                <div data-lift class="product-card pre bg-white rounded-[18px] overflow-hidden border border-[#F2E8E1] shadow-[0_6px_22px_rgba(80,40,20,0.05)] hover:shadow-[0_16px_34px_rgba(80,40,20,0.12)] transition-shadow">
+                    <div class="relative h-[305px] bg-[#FBE3D7] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=600&auto=format&fit=crop" alt="Checked Overshirt" class="product-img w-full h-full object-cover object-top">
+                        <button data-like class="absolute top-4 right-4 bg-white w-[38px] h-[38px] rounded-full flex items-center justify-center text-ink hover:text-brand shadow-sm transition-colors" aria-label="Add to wishlist"><i data-lucide="heart" class="w-[18px] h-[18px]"></i></button>
+                    </div>
+                    <div class="px-5 pt-5 pb-6">
+                        <h3 class="font-semibold text-[17px]">Checked Overshirt</h3>
+                        <p class="font-bold text-brand text-[22px] mt-3">$49.00</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex gap-2.5"><span class="swatch w-[18px] h-[18px] rounded-full bg-[#D63A36]"></span><span class="swatch w-[18px] h-[18px] rounded-full bg-[#1E1B1A]"></span><span class="swatch w-[18px] h-[18px] rounded-full bg-[#B8B3AF]"></span></div>
+                            <button data-add data-spring class="w-[46px] h-[46px] rounded-lg border-[1.5px] border-brand/60 text-brand hover:bg-brand hover:text-white transition-colors flex items-center justify-center" aria-label="Add to cart"><i data-lucide="shopping-cart" class="w-5 h-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 (featured) -->
+                <div data-lift class="product-card pre bg-white rounded-[18px] overflow-hidden border-[1.5px] border-brand shadow-[0_12px_30px_rgba(233,75,60,0.16)]">
+                    <div class="relative h-[305px] bg-[#F3E2CE] overflow-hidden">
+                        <img src="images/Gemini_Generated_Image_f0apb9f0apb9f0ap.jpg" alt="Sequin Party Dress" class="product-img w-full h-full object-cover object-[50%_20%]">
+                        <div class="absolute top-4 left-4 flex flex-col gap-2">
+                            <span class="tag pre bg-brand text-white text-[14px] font-medium px-4 py-1 rounded-lg">Hot</span>
+                            <span class="tag pre bg-[#3DAE5F] text-white text-[14px] font-medium px-4 py-1 rounded-lg">New</span>
+                        </div>
+                        <button data-like class="absolute top-4 right-4 bg-white w-[38px] h-[38px] rounded-full flex items-center justify-center text-ink hover:text-brand shadow-sm transition-colors" aria-label="Add to wishlist"><i data-lucide="heart" class="w-[18px] h-[18px]"></i></button>
+                    </div>
+                    <div class="px-4 pt-5 pb-4">
+                        <div class="flex items-center justify-between px-1">
+                            <h3 class="font-semibold text-[17px]">Sequin Party Dress</h3>
+                            <i data-lucide="eye" class="w-4 h-4 text-brand/70"></i>
+                        </div>
+                        <p class="font-bold text-brand text-[22px] mt-2 px-1">$79.00</p>
+                        <div class="flex gap-2.5 mt-4 px-1"><span class="swatch w-[18px] h-[18px] rounded-full bg-[#C62F2F]"></span><span class="swatch w-[18px] h-[18px] rounded-full bg-[#D9A9A6]"></span><span class="swatch w-[18px] h-[18px] rounded-full bg-[#1E1B1A]"></span></div>
+                        <button data-add data-spring class="w-full mt-4 bg-brand hover:bg-brand-dark text-white font-medium h-[46px] rounded-lg transition-colors flex justify-center items-center gap-3 text-[16px]">
+                            <i data-lucide="shopping-cart" class="w-5 h-5"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div data-lift class="product-card pre bg-white rounded-[18px] overflow-hidden border border-[#F2E8E1] shadow-[0_6px_22px_rgba(80,40,20,0.05)] hover:shadow-[0_16px_34px_rgba(80,40,20,0.12)] transition-shadow">
+                    <div class="relative h-[305px] bg-[#F1E1D0] overflow-hidden">
+                        <img src="images/Gemini_Generated_Image_ff4l1uff4l1uff4l.jpg" alt="Cropped Blazer" class="product-img w-full h-full object-cover object-[50%_15%]">
+                        <button data-like class="absolute top-4 right-4 bg-white w-[38px] h-[38px] rounded-full flex items-center justify-center text-ink hover:text-brand shadow-sm transition-colors" aria-label="Add to wishlist"><i data-lucide="heart" class="w-[18px] h-[18px]"></i></button>
+                    </div>
+                    <div class="px-5 pt-5 pb-6">
+                        <h3 class="font-semibold text-[17px]">Cropped Blazer</h3>
+                        <p class="font-bold text-brand text-[22px] mt-3">$59.00</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex gap-2.5"><span class="swatch w-[18px] h-[18px] rounded-full bg-[#F28C98]"></span><span class="swatch w-[18px] h-[18px] rounded-full bg-[#F4C2C2]"></span><span class="swatch w-[18px] h-[18px] rounded-full bg-[#1E1B1A]"></span></div>
+                            <button data-add data-spring class="w-[46px] h-[46px] rounded-lg border-[1.5px] border-brand/60 text-brand hover:bg-brand hover:text-white transition-colors flex items-center justify-center" aria-label="Add to cart"><i data-lucide="shopping-cart" class="w-5 h-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div data-lift class="product-card pre bg-white rounded-[18px] overflow-hidden border border-[#F2E8E1] shadow-[0_6px_22px_rgba(80,40,20,0.05)] hover:shadow-[0_16px_34px_rgba(80,40,20,0.12)] transition-shadow">
+                    <div class="relative h-[305px] bg-[#F3E2CE] overflow-hidden">
+                        <img src="images/Gemini_Generated_Image_clmg55clmg55clmg.jpg" alt="Floral Midi Skirt" class="product-img w-full h-full object-cover object-[50%_10%]">
+                        <button data-like class="absolute top-4 right-4 bg-white w-[38px] h-[38px] rounded-full flex items-center justify-center text-ink hover:text-brand shadow-sm transition-colors" aria-label="Add to wishlist"><i data-lucide="heart" class="w-[18px] h-[18px]"></i></button>
+                    </div>
+                    <div class="px-5 pt-5 pb-6">
+                        <h3 class="font-semibold text-[17px]">Floral Midi Skirt</h3>
+                        <p class="font-bold text-brand text-[22px] mt-3">$45.00</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex gap-2.5"><span class="swatch w-[18px] h-[18px] rounded-full bg-[#E9893A]"></span><span class="swatch w-[18px] h-[18px] rounded-full bg-[#4A1F16]"></span><span class="swatch w-[18px] h-[18px] rounded-full bg-[#C2917E]"></span></div>
+                            <button data-add data-spring class="w-[46px] h-[46px] rounded-lg border-[1.5px] border-brand/60 text-brand hover:bg-brand hover:text-white transition-colors flex items-center justify-center" aria-label="Add to cart"><i data-lucide="shopping-cart" class="w-5 h-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Banner -->
+        <section id="deals" class="mb-8">
+            <div class="promo pre promo-bg rounded-[30px] min-h-[237px] relative overflow-hidden flex items-center shadow-[0_14px_36px_rgba(233,75,60,0.22)]">
+                <!-- leaf line art (drawn in on scroll) -->
+                <svg class="promo-leaf hidden xl:block absolute left-[49%] top-1/2 -translate-y-1/2 w-[110px] h-[200px] text-white/70 z-10" viewBox="0 0 60 120" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                    <path d="M30 118 C 30 80, 32 40, 45 4"/>
+                    <path d="M31 95 C 18 92, 10 82, 8 70 C 20 72, 28 82, 31 95 Z"/>
+                    <path d="M32 75 C 44 72, 52 62, 54 50 C 42 52, 34 62, 32 75 Z"/>
+                    <path d="M34 55 C 22 52, 16 42, 15 30 C 26 33, 32 43, 34 55 Z"/>
+                    <path d="M38 35 C 48 32, 54 22, 55 12 C 45 14, 40 24, 38 35 Z"/>
+                </svg>
+
+                <div class="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12 px-6 sm:px-8 py-10">
+                    <div class="promo-badge pre relative w-[150px] h-[150px] shrink-0">
+                        <div class="promo-ring absolute inset-0 rounded-full border-2 border-dashed border-white/80"></div>
+                        <div class="absolute inset-2 bg-white rounded-full flex flex-col items-center justify-center font-medium text-[18px] leading-[1.3] text-center">
+                            <span>Limited</span><span>Time</span><span>Offer</span>
+                        </div>
+                    </div>
+                    <div class="promo-text text-white text-center md:text-left">
+                        <h2 class="pre text-[32px] sm:text-[38px] md:text-[44px] font-semibold leading-none">Up To <span class="promo-num inline-block">30</span>% OFF</h2>
+                        <p class="pre text-[18px] sm:text-[22px] mt-4 mb-7 text-white/95">On Selected Women's Fashion</p>
+                        <a href="#arrivals" data-spring class="pre bg-white text-ink hover:text-brand h-[56px] px-8 rounded-lg font-semibold transition-colors inline-flex items-center gap-4 text-[17px]">
+                            Grab the Deal <i data-lucide="arrow-right" class="w-5 h-5 text-brand"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="promo-img-wrap pre hidden xl:block absolute right-0 top-0 h-full w-[48%] overflow-hidden" style="-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%); mask-image: linear-gradient(to right, transparent 0%, #000 22%);">
+                    <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=900&auto=format&fit=crop" alt="Rack of colourful shirts" class="promo-img w-[112%] max-w-none h-full object-cover -ml-[6%]">
+                </div>
+            </div>
+        </section>
+
+        <!-- Perks strip -->
+        <div id="perks" class="perks pre grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-y-6 gap-x-4 py-9 px-8 bg-white/70 rounded-[26px] border border-[#F3E7DE]">
+            <div class="feature flex items-center gap-5 xl:border-r border-[#F0E4DC]">
+                <div class="feat-icon pre w-[66px] h-[66px] rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0"><i data-lucide="gift" class="w-7 h-7"></i></div>
+                <div class="feat-text pre"><h4 class="font-semibold text-[17px] whitespace-nowrap">Exclusive Offers</h4><p class="text-[15px] text-textMuted mt-1 leading-snug">Save more<br>every day</p></div>
+            </div>
+            <div class="feature flex items-center gap-5 xl:border-r border-[#F0E4DC] xl:px-6">
+                <div class="feat-icon pre w-[66px] h-[66px] rounded-full bg-brand-50 flex items-center justify-center shrink-0"><span class="w-[34px] h-[34px] rotate-45 rounded-md bg-brand flex items-center justify-center"><i data-lucide="percent" class="-rotate-45 text-white w-4 h-4" stroke-width="3"></i></span></div>
+                <div class="feat-text pre"><h4 class="font-semibold text-[17px] whitespace-nowrap">Secure Payments</h4><p class="text-[15px] text-textMuted mt-1 leading-snug">100% safe &amp;<br>secure</p></div>
+            </div>
+            <div class="feature flex items-center gap-5 xl:border-r border-[#F0E4DC] xl:px-6">
+                <div class="feat-icon pre w-[66px] h-[66px] rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0"><i data-lucide="headphones" class="w-7 h-7"></i></div>
+                <div class="feat-text pre"><h4 class="font-semibold text-[17px] whitespace-nowrap">24/7 Support</h4><p class="text-[15px] text-textMuted mt-1 leading-snug">We're here<br>to help</p></div>
+            </div>
+            <div class="feature flex items-center gap-5 xl:pl-6">
+                <div class="feat-icon pre w-[66px] h-[66px] rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0"><i data-lucide="crown" class="w-7 h-7"></i></div>
+                <div class="feat-text pre"><h4 class="font-semibold text-[17px] whitespace-nowrap">Loyalty Rewards</h4><p class="text-[15px] text-textMuted mt-1 leading-snug">Earn points &amp;<br>get rewards</p></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer bg-[#1E1B1A] text-white/80 mt-8">
+        <div class="max-w-[1280px] mx-auto px-6 lg:px-[60px] pt-16 pb-8">
+            <!-- Newsletter -->
+            <div class="foot-news pre bg-brand rounded-[26px] px-6 sm:px-10 py-8 flex flex-col lg:flex-row items-center justify-between gap-6 mb-14">
+                <div class="text-center lg:text-left">
+                    <h3 class="text-white text-[24px] sm:text-[28px] font-bold">Join the ChicWove Club</h3>
+                    <p class="text-white/90 mt-1 text-[16px]">Get 10% off your first order plus early access to new drops.</p>
+                </div>
+                <form class="w-full lg:w-auto flex flex-col sm:flex-row gap-3" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!';">
+                    <label for="news-email" class="sr-only">Email address</label>
+                    <input id="news-email" type="email" required placeholder="Enter your email" class="h-[54px] w-full sm:w-[300px] rounded-lg px-5 text-ink outline-none focus:ring-4 focus:ring-white/40">
+                    <button data-spring class="h-[54px] px-8 rounded-lg bg-ink text-white font-bold hover:bg-black transition-colors whitespace-nowrap">Subscribe</button>
+                </form>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-10">
+                <div class="foot-col pre">
+                    <a href="#" class="font-logo font-bold text-[32px] text-white">Chic<span class="text-brand">Wove</span></a>
+                    <p class="mt-4 text-[15px] leading-relaxed max-w-[300px]">Trendy styles, premium quality &amp; unmatched comfort — fashion made for every version of you.</p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="#" data-spring aria-label="Instagram" class="w-11 h-11 rounded-full bg-white/10 hover:bg-brand flex items-center justify-center transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" data-spring aria-label="Facebook" class="w-11 h-11 rounded-full bg-white/10 hover:bg-brand flex items-center justify-center transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" data-spring aria-label="Twitter" class="w-11 h-11 rounded-full bg-white/10 hover:bg-brand flex items-center justify-center transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" data-spring aria-label="YouTube" class="w-11 h-11 rounded-full bg-white/10 hover:bg-brand flex items-center justify-center transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+                <div class="foot-col pre">
+                    <h4 class="text-white font-bold text-[18px] mb-5">Shop</h4>
+                    <ul class="space-y-3 text-[15px]">
+                        <li><a href="#arrivals" class="hover:text-brand transition-colors">New Arrivals</a></li>
+                        <li><a href="#categories" class="hover:text-brand transition-colors">Dresses</a></li>
+                        <li><a href="#categories" class="hover:text-brand transition-colors">Tops &amp; T-shirts</a></li>
+                        <li><a href="#categories" class="hover:text-brand transition-colors">Shoes &amp; Footwear</a></li>
+                        <li><a href="#deals" class="hover:text-brand transition-colors">Deals</a></li>
+                    </ul>
+                </div>
+                <div class="foot-col pre">
+                    <h4 class="text-white font-bold text-[18px] mb-5">Help</h4>
+                    <ul class="space-y-3 text-[15px]">
+                        <li><a href="#" class="hover:text-brand transition-colors">Track Order</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Returns &amp; Exchanges</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="foot-col pre">
+                    <h4 class="text-white font-bold text-[18px] mb-5">Contact Us</h4>
+                    <ul class="space-y-4 text-[15px]">
+                        <li class="flex gap-3"><i data-lucide="map-pin" class="w-5 h-5 text-brand shrink-0"></i>123 Fashion Street, New York, NY</li>
+                        <li class="flex gap-3"><i data-lucide="phone" class="w-5 h-5 text-brand shrink-0"></i>+1 (555) 123-4567</li>
+                        <li class="flex gap-3"><i data-lucide="mail" class="w-5 h-5 text-brand shrink-0"></i>hello@chicwove.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="foot-bottom pre border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[14px] text-white/60">
+                <p>&copy; 2026 ChicWove. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Cookies</a>
+                </div>
+                <button id="to-top" data-spring class="w-11 h-11 rounded-full bg-brand text-white flex items-center justify-center" aria-label="Back to top"><i data-lucide="arrow-up" class="w-5 h-5"></i></button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script>
+    (() => {
+        if (window.lucide) lucide.createIcons();
+
+        /* ---------- Mobile menu (spring open, works without GSAP too) ---------- */
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const setMenu = open => {
+            menuBtn.setAttribute('aria-expanded', open);
+            if (open) {
+                menu.classList.remove('hidden'); menu.classList.add('flex');
+                if (window.gsap) {
+                    gsap.fromTo(menu, { autoAlpha: 0, y: -20, scale: 0.9, filter: 'blur(10px)' }, { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.8, ease: 'back.out(1.8)', transformOrigin: 'top right' });
+                    gsap.fromTo(menu.children, { autoAlpha: 0, x: 20 }, { autoAlpha: 1, x: 0, duration: 0.7, stagger: 0.05, ease: 'back.out(2)' });
+                }
+            } else if (window.gsap) {
+                gsap.to(menu, { autoAlpha: 0, y: -10, scale: 0.95, duration: 0.25, ease: 'power2.in', onComplete: () => { menu.classList.add('hidden'); menu.classList.remove('flex'); } });
+            } else { menu.classList.add('hidden'); menu.classList.remove('flex'); }
+        };
+        menuBtn.addEventListener('click', e => { e.stopPropagation(); setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
+        menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+        document.addEventListener('click', e => { if (menuBtn.getAttribute('aria-expanded') === 'true' && !menu.contains(e.target)) setMenu(false); });
+        window.addEventListener('resize', () => { if (innerWidth >= 1280 && menuBtn.getAttribute('aria-expanded') === 'true') setMenu(false); });
+
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!window.gsap || !window.ScrollTrigger || reduceMotion) {
+            document.documentElement.classList.remove('js');
+            return;
+        }
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* ---------- Lenis smooth scroll, driven by GSAP's ticker ---------- */
+        let lenis = null;
+        if (window.Lenis) {
+            lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add(time => lenis.raf(time * 1000));
+            gsap.ticker.lagSmoothing(0);
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+            const id = a.getAttribute('href');
+            if (id.length < 2) { e.preventDefault(); return; }
+            const target = document.querySelector(id);
+            if (target) { e.preventDefault(); lenis ? lenis.scrollTo(target, { offset: -24 }) : target.scrollIntoView({ behavior: 'smooth' }); }
+        }));
+
+        /* ---------- blur-to-clear helper ---------- */
+        // Animates from hidden + blurred (+ any transform in `from`) back to the element's natural state.
+        const NEUTRAL = { x: 0, y: 0, xPercent: 0, yPercent: 0, scale: 1, rotate: 0, rotateX: 0, rotateY: 0 };
+        function reveal(targets, from = {}, to = {}) {
+            const end = { autoAlpha: 1, filter: 'blur(0px)', duration: 1, clearProps: 'filter' };
+            for (const k in from) if (k in NEUTRAL) end[k] = NEUTRAL[k];
+            return gsap.fromTo(targets, { autoAlpha: 0, filter: 'blur(14px)', ...from }, { ...end, ...to });
+        }
+        const once = (trigger, start = 'top 85%') => ({ trigger, start, once: true });
+
+        /* ---------- Hero intro ---------- */
+        const intro = gsap.timeline({ delay: 0.1 });
+        intro
+            .add(reveal('.site-header > *', { y: -40 }, { duration: 1, stagger: 0.1, ease: 'back.out(1.8)' }), 0)
+            .add(gsap.fromTo('.logo-mark', { rotate: -180, scale: 0.4 }, { rotate: 0, scale: 1, duration: 1.6, ease: 'elastic.out(1, 0.45)' }), 0.1)
+            .add(reveal('.hero-img', { scale: 1.18, filter: 'blur(30px)' }, { duration: 1.8, ease: 'power3.out' }), 0.15)
+            .add(reveal('.hero-badge', { scale: 0.3, y: 20 }, { duration: 1.3, ease: 'elastic.out(1, 0.5)' }), 0.35)
+            .add(reveal('.hero-title .word', { y: 70, rotateX: -55, filter: 'blur(18px)' }, { duration: 1.2, stagger: 0.09, ease: 'back.out(1.7)' }), 0.45)
+            .add(reveal('.hero-copy', { y: 24 }, { duration: 1, ease: 'power3.out' }), 0.85)
+            .add(reveal('.hero-cta > *', { scale: 0.5, y: 24 }, { duration: 1.4, stagger: 0.12, ease: 'elastic.out(1, 0.55)' }), 1.0)
+            .add(reveal('.review-card', { scale: 0.4, y: 50 }, { duration: 1.5, ease: 'elastic.out(1, 0.5)' }), 1.15)
+            .add(reveal('.review-card .avatar', { scale: 0, x: -24, filter: 'blur(6px)' }, { duration: 0.9, stagger: 0.1, ease: 'back.out(2.6)' }), 1.35)
+            .add(reveal('.review-card .star', { scale: 0, rotate: -120, filter: 'blur(4px)' }, { duration: 0.9, stagger: 0.07, ease: 'back.out(3)' }), 1.5)
+            .add(gsap.from('.review-card .count', { textContent: 0, duration: 1.4, ease: 'power2.out', snap: { textContent: 1 } }), 1.4);
+
+        // idle float + scroll parallax
+        gsap.to('.hero-leaf', { y: 24, rotate: 8, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        gsap.to('.review-card', { y: -10, duration: 2.6, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2.8 });
+        gsap.to('.hero-img-wrap', {
+            yPercent: 10, ease: 'none',
+            scrollTrigger: { trigger: '.hero-band', start: 'top top', end: 'bottom top', scrub: true }
+        });
+
+        /* ---------- Features bar ---------- */
+        const featTl = gsap.timeline({ scrollTrigger: once('.features-bar', 'top 95%') });
+        featTl
+            .add(reveal('.features-bar', { y: 70, scale: 0.94 }, { duration: 1.2, ease: 'back.out(1.5)' }))
+            .add(reveal('.features-bar .feat-icon', { scale: 0, rotate: -90, filter: 'blur(8px)' }, { duration: 1.3, stagger: 0.1, ease: 'elastic.out(1, 0.45)' }), '-=0.8')
+            .add(reveal('.features-bar .feat-text', { x: -20 }, { duration: 0.9, stagger: 0.1, ease: 'power3.out' }), '<0.1');
+
+        /* ---------- Section headings ---------- */
+        gsap.utils.toArray('.sec-head').forEach(head => {
+            reveal(head.children, { y: 34 }, { duration: 1, stagger: 0.12, ease: 'back.out(1.7)', scrollTrigger: once(head) });
+        });
+
+        /* ---------- Category cards ---------- */
+        ScrollTrigger.batch('.cat-card', {
+            start: 'top 88%', once: true,
+            onEnter: cards => {
+                reveal(cards, { y: 90, scale: 0.82, rotate: i => (i % 2 ? 4 : -4), filter: 'blur(16px)' }, { duration: 1.2, stagger: 0.1, ease: 'back.out(1.8)' });
+                reveal(cards.map(c => c.querySelector('.cat-img')), { scale: 1.4, filter: 'blur(20px)' }, { duration: 1.4, stagger: 0.1, ease: 'power3.out', delay: 0.1 });
+            }
+        });
+        gsap.set('.cat-img', { autoAlpha: 0 });
+
+        /* ---------- Product cards ---------- */
+        ScrollTrigger.batch('.product-card', {
+            start: 'top 88%', once: true,
+            onEnter: cards => {
+                reveal(cards, { y: 110, scale: 0.88, filter: 'blur(18px)' }, { duration: 1.3, stagger: 0.12, ease: 'back.out(1.5)' });
+                reveal(cards.map(c => c.querySelector('.product-img')), { scale: 1.25, filter: 'blur(24px)' }, { duration: 1.6, stagger: 0.12, ease: 'power3.out' });
+                const tags = cards.flatMap(c => [...c.querySelectorAll('.tag')]);
+                if (tags.length) reveal(tags, { scale: 0, x: -30, filter: 'blur(6px)' }, { duration: 1.2, stagger: 0.12, delay: 0.6, ease: 'elastic.out(1, 0.45)' });
+                gsap.fromTo(cards.flatMap(c => [...c.querySelectorAll('.swatch')]), { scale: 0 }, { scale: 1, duration: 0.9, stagger: 0.04, delay: 0.5, ease: 'back.out(3)' });
+            }
+        });
+        gsap.set('.product-img', { autoAlpha: 0 });
+
+        /* ---------- Promo banner ---------- */
+        const leafPaths = gsap.utils.toArray('.promo-leaf path');
+        leafPaths.forEach(p => { const len = p.getTotalLength(); gsap.set(p, { strokeDasharray: len, strokeDashoffset: len }); });
+
+        const promoTl = gsap.timeline({ scrollTrigger: once('.promo', 'top 82%') });
+        promoTl
+            .add(reveal('.promo', { y: 80, scale: 0.9, filter: 'blur(20px)' }, { duration: 1.3, ease: 'back.out(1.4)' }))
+            .add(reveal('.promo-img-wrap', { x: 120, filter: 'blur(24px)' }, { duration: 1.4, ease: 'power3.out' }), '-=0.9')
+            .add(reveal('.promo-badge', { scale: 0, rotate: -200 }, { duration: 1.8, ease: 'elastic.out(1, 0.4)' }), '-=1.1')
+            .add(reveal('.promo-text > *', { y: 36 }, { duration: 1.1, stagger: 0.12, ease: 'back.out(1.8)' }), '-=1.4')
+            .add(gsap.from('.promo-num', { textContent: 0, duration: 1.2, ease: 'power2.out', snap: { textContent: 1 } }), '<')
+            .add(gsap.fromTo('.promo-num', { scale: 1 }, { scale: 1.25, duration: 0.25, yoyo: true, repeat: 1, ease: 'power2.out' }), '>-0.1')
+            .add(gsap.to(leafPaths, { strokeDashoffset: 0, duration: 1.6, stagger: 0.15, ease: 'power2.inOut' }), '-=1.2');
+
+        gsap.to('.promo-ring', { rotate: 360, duration: 20, repeat: -1, ease: 'none' });
+        gsap.fromTo('.promo-img', { xPercent: -5 }, {
+            xPercent: 5, ease: 'none',
+            scrollTrigger: { trigger: '.promo', start: 'top bottom', end: 'bottom top', scrub: true }
+        });
+
+        /* ---------- Perks strip ---------- */
+        const perksTl = gsap.timeline({ scrollTrigger: once('.perks', 'top 92%') });
+        perksTl
+            .add(reveal('.perks', { y: 60 }, { duration: 1, ease: 'back.out(1.6)' }))
+            .add(reveal('.perks .feat-icon', { scale: 0, y: 30, filter: 'blur(8px)' }, { duration: 1.4, stagger: 0.12, ease: 'elastic.out(1, 0.4)' }), '-=0.6')
+            .add(reveal('.perks .feat-text', { y: 16 }, { duration: 0.8, stagger: 0.12 }), '<0.1');
+
+        /* ---------- Footer ---------- */
+        const footTl = gsap.timeline({ scrollTrigger: once('.site-footer', 'top 90%') });
+        footTl
+            .add(reveal('.foot-news', { y: 60, scale: 0.92, filter: 'blur(18px)' }, { duration: 1.2, ease: 'back.out(1.6)' }))
+            .add(reveal('.foot-col', { y: 50 }, { duration: 1, stagger: 0.12, ease: 'back.out(1.8)' }), '-=0.7')
+            .add(gsap.fromTo('.foot-col a[aria-label]', { scale: 0 }, { scale: 1, duration: 1.1, stagger: 0.08, ease: 'elastic.out(1, 0.4)' }), '-=0.6')
+            .add(reveal('.foot-bottom', { y: 20 }, { duration: 0.8 }), '-=0.8');
+        document.getElementById('to-top').addEventListener('click', () => lenis ? lenis.scrollTo(0, { duration: 1.6 }) : scrollTo({ top: 0, behavior: 'smooth' }));
+
+        /* ---------- Spring micro-interactions ---------- */
+        const spring = 'elastic.out(1.1, 0.4)';
+        document.querySelectorAll('[data-spring]').forEach(el => {
+            el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.07, duration: 0.7, ease: spring, overwrite: 'auto' }));
+            el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, duration: 0.7, ease: spring, overwrite: 'auto' }));
+            el.addEventListener('pointerdown', () => gsap.to(el, { scale: 0.92, duration: 0.15, ease: 'power2.out', overwrite: 'auto' }));
+            el.addEventListener('pointerup', () => gsap.to(el, { scale: 1.07, duration: 0.8, ease: 'elastic.out(1.3, 0.35)', overwrite: 'auto' }));
+        });
+
+        document.querySelectorAll('[data-lift]').forEach(card => {
+            const img = card.querySelector('.cat-img, .product-img');
+            const arrow = card.querySelector('.cat-arrow');
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, { y: -10, duration: 0.8, ease: 'back.out(2.5)', overwrite: 'auto' });
+                if (img) gsap.to(img, { scale: 1.08, duration: 0.9, ease: 'back.out(1.6)', overwrite: 'auto' });
+                if (arrow) gsap.to(arrow, { x: 8, color: '#E94B3C', duration: 0.8, ease: spring, overwrite: 'auto' });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { y: 0, duration: 0.9, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' });
+                if (img) gsap.to(img, { scale: 1, duration: 0.9, ease: 'power3.out', overwrite: 'auto' });
+                if (arrow) gsap.to(arrow, { x: 0, color: '#1E1B1A', duration: 0.8, ease: spring, overwrite: 'auto' });
+            });
+        });
+
+        // wishlist heart: fill + elastic pop
+        document.querySelectorAll('[data-like]').forEach(btn => btn.addEventListener('click', () => {
+            btn.classList.toggle('liked');
+            gsap.fromTo(btn.querySelector('svg'), { scale: 0.3, rotate: -25 }, { scale: 1, rotate: 0, duration: 1, ease: 'elastic.out(1.2, 0.3)' });
+        }));
+
+        // add to cart: bump the counter with a bouncy badge + wobbling bag
+        const countEl = document.getElementById('cart-count');
+        const bag = document.querySelector('.cart-btn svg');
+        document.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', () => {
+            countEl.textContent = Number(countEl.textContent) + 1;
+            gsap.fromTo(countEl, { scale: 1.9 }, { scale: 1, duration: 1.1, ease: 'elastic.out(1.2, 0.3)' });
+            gsap.fromTo(bag, { rotate: -18 }, { rotate: 0, duration: 1.2, ease: 'elastic.out(1.4, 0.25)' });
+            gsap.fromTo(btn.querySelector('svg'), { x: -6 }, { x: 0, duration: 0.8, ease: 'elastic.out(1.2, 0.35)' });
+        }));
+
+        window.addEventListener('load', () => ScrollTrigger.refresh());
+    })();
+    </script>
+</body>
+</html>
